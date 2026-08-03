@@ -1,0 +1,39 @@
+'use strict';
+
+const { Sequelize } = require('sequelize');
+
+const {
+  POSTGRES_HOST,
+  POSTGRES_PORT,
+  POSTGRES_USER,
+  POSTGRES_PASSWORD,
+  POSTGRES_DB,
+  POSTGRES_DIALECT,
+} = process.env;
+
+const requiredEnv = {
+  POSTGRES_HOST,
+  POSTGRES_PORT,
+  POSTGRES_USER,
+  POSTGRES_DB,
+  POSTGRES_DIALECT,
+};
+
+for (const [key, value] of Object.entries(requiredEnv)) {
+  if (!value) {
+    throw new Error(`Missing required environment variable: ${key}`);
+  }
+}
+
+const sequelize = new Sequelize({
+  database: POSTGRES_DB,
+  username: POSTGRES_USER,
+  host: POSTGRES_HOST,
+  dialect: POSTGRES_DIALECT,
+  port: POSTGRES_PORT,
+  password: POSTGRES_PASSWORD,
+});
+
+module.exports = {
+  sequelize,
+};
