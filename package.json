@@ -5,8 +5,9 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "nodemon --env-file=.env.local src/index.js",
-    "start": "node --env-file=.env.local src/index.js",
+    "startLocal": "node --env-file=.env.local src/index.js",
     "startProd": "node --env-file=.env src/index.js",
+    "start": "node src/index.js",
     "lint": "npm run format && eslint ./src",
     "format": "prettier --ignore-path .prettierignore --write './src/**/*.{js,ts}'",
     "setupDb": "node --env-file=.env.local src/setupDb.js",
