@@ -1,0 +1,28 @@
+{
+  "name": "node_accounting-app-live",
+  "version": "1.0.0",
+  "description": "Node.js accounting app with PostgreSQL",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "nodemon --env-file=.env.local src/index.js",
+    "start": "node --env-file=.env.local src/index.js",
+    "startProd": "node --env-file=.env src/index.js",
+    "lint": "npm run format && eslint ./src",
+    "format": "prettier --ignore-path .prettierignore --write './src/**/*.{js,ts}'",
+    "setupDb": "node --env-file=.env.local src/setupDb.js",
+    "setupDb:prod": "node --env-file=.env src/setupDb.js"
+  },
+  "author": "Bohdan Leonets",
+  "dependencies": {
+    "cors": "2.8.6",
+    "express": "5.2.1",
+    "pg": "8.22.0",
+    "sequelize": "6.37.8"
+  },
+  "devDependencies": {
+    "eslint": "10.8.0",
+    "eslint-plugin-node": "11.1.0",
+    "nodemon": "3.1.14",
+    "prettier": "3.9.6"
+  }
+}

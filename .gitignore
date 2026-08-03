@@ -1,0 +1,14 @@
+# IDE
+.idea
+.vscode
+
+# Node
+node_modules
+
+# MacOS
+.DS_Store
+
+# Local env files
+.env
+.env.*
+!.env.example
