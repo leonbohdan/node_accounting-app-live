@@ -25,6 +25,8 @@ for (const [key, value] of Object.entries(requiredEnv)) {
   }
 }
 
+const isSSL = process.env.POSTGRES_SSL === 'true';
+
 const sequelize = new Sequelize({
   database: POSTGRES_DB,
   username: POSTGRES_USER,
@@ -32,6 +34,20 @@ const sequelize = new Sequelize({
   dialect: POSTGRES_DIALECT,
   port: POSTGRES_PORT,
   password: POSTGRES_PASSWORD,
+  ...(isSSL && {
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    },
+  }),
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000,
+  },
 });
 
 module.exports = {
